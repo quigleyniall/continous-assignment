@@ -1,0 +1,6 @@
+src/registerServiceWorker.js
+# src/**/__tests__/**
+webpack.config.js
+./lib
+./dist
+./server.js
