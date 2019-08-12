@@ -1,7 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.scss';
+import { createStore, applyMiddleware } from 'redux';
+import { Provider } from 'react-redux';
+import thunk from 'redux-thunk';
+import axios from 'axios';
+import { reducers } from './redux';
+import App from './containers/App/App';
+import './styles/index.scss';
 
-const App = () => <div className="app">Hello From React</div>;
+const store = createStore(reducers, applyMiddleware(thunk));
 
-ReactDOM.render(<App />, document.getElementById('root'));
+axios.baseUrl = 'some url';
+
+ReactDOM.render(
+	<Provider store={store}>
+		<App />
+	</Provider>,
+	document.getElementById('root'),
+);
