@@ -1,0 +1,16 @@
+.note-selection {
+	box-sizing: border-box;
+	width: 100%;
+	padding: 20px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	background-color: #fff;
+	position: relative;
+
+	&:hover {
+		box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+		cursor: pointer;
+		z-index: 12;
+	}
+}
