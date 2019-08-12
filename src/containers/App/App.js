@@ -1,6 +1,7 @@
 //  @flow
 
 import * as React from 'react';
+import NoteContainer from '../NoteContainer/NoteContainer';
 import Header from '../../components/Header/Header';
 import Button from '../../components/Button/Button';
 import './App.scss';
@@ -28,6 +29,9 @@ class App extends React.Component<null, State> {
 		return (
 			<div className="wrapper">
 				<Header createNote={this.createNote} />
+				<div className="main">
+					<NoteContainer />
+				</div>
 				<div className="save-button">
 					<Button
 						icon="far fa-save"
