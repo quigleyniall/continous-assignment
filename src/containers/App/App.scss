@@ -2,6 +2,12 @@
 	position: relative;
 	height: 100vh;
 
+	.main {
+		position: relative;
+		height: calc(100% - 70px);
+		display: flex;
+	}
+
 	.save-button {
 		position: absolute;
 		right: 10px;
