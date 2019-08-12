@@ -1,11 +1,11 @@
 [ignore]
 .*/build/.*
-./node_modules
+/node_modules
 
 [include]
 
 [libs]
-./lib
+./src/**
 
 [lints]
 all=warn
@@ -13,5 +13,11 @@ untyped-type-import=error
 sketchy-null-bool=off
 
 [options]
+module.file_ext=.js
+module.file_ext=.jsx
+module.file_ext=.json
+module.file_ext=.css
+module.file_ext=.scss
 
 [strict]
+
