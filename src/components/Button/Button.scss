@@ -1,0 +1,62 @@
+.btn {
+	display: inline-block;
+	background-color: #fff;
+	color: var(--primary-color);
+	border: 1.5px solid var(--primary-color);
+	line-height: 24px;
+	padding: 5px 15px;
+	box-sizing: border-box;
+	border-radius: 3px;
+	font-size: 14px;
+	font-weight: 500;
+	text-transform: uppercase;
+
+	&:hover {
+		cursor: pointer;
+		color: #fff;
+		background-color: var(--primary-color);
+	}
+
+	&:focus {
+		outline: 0;
+		box-shadow: none;
+	}
+
+	&-circle {
+		border-radius: 500px;
+		font-size: 30px;
+		padding: 15px;
+	}
+
+	&-disabled {
+		border: var(--gray);
+		color: #fff;
+		background-color: var(--dark-gray);
+	}
+
+	&-disabled:hover {
+		border: var(--gray);
+		color: #fff;
+		background-color: var(--dark-gray);
+		cursor: not-allowed;
+	}
+
+	&-input {
+		font-size: 15px;
+		padding: 5px 5px;
+		line-height: 10px;
+		color: var(--dark-gray);
+		border: none;
+	}
+
+	&-input:hover {
+		color: var(--dark-gray);
+		border: none;
+		background: #fff;
+		color: var(--dark-gray);
+	}
+
+	&-clicked {
+		color: var(--primary-color);
+	}
+}
