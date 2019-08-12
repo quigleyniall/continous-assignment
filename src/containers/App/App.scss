@@ -1,0 +1,10 @@
+.wrapper {
+	position: relative;
+	height: 100vh;
+
+	.save-button {
+		position: absolute;
+		right: 10px;
+		bottom: 10px;
+	}
+}
