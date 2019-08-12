@@ -3,5 +3,10 @@
 		"@babel/preset-env",
 		"@babel/preset-react",
 		"@babel/preset-flow"
-	]
+	],
+	"plugins": [
+		["@babel/plugin-proposal-class-properties"],
+		["react-flow-props-to-prop-types"]
+	],
+	"retainLines": true
 }
