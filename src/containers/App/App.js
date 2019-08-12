@@ -2,6 +2,7 @@
 
 import * as React from 'react';
 import NoteContainer from '../NoteContainer/NoteContainer';
+import NoteInputContainer from '../NoteInputContainer/NoteInputContainer';
 import Header from '../../components/Header/Header';
 import Button from '../../components/Button/Button';
 import './App.scss';
@@ -31,6 +32,7 @@ class App extends React.Component<null, State> {
 				<Header createNote={this.createNote} />
 				<div className="main">
 					<NoteContainer />
+					<NoteInputContainer />
 				</div>
 				<div className="save-button">
 					<Button
