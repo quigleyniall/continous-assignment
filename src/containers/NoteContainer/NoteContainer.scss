@@ -3,7 +3,7 @@
 	height: 100%;
 	position: relative;
 	overflow: auto;
-	background: red;
+	border-right: 1px solid var(--gray);
 
 	&::-webkit-scrollbar-track {
 		padding: 2px 0;
