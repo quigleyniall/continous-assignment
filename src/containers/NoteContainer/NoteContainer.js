@@ -6,7 +6,19 @@ import NoteSelect from '../../components/NoteSelect/Note';
 import { fetchNotes, fetchNoteById } from '../../redux/actions';
 import './NoteContainer.scss';
 
-class NoteContainer extends React.Component<null> {
+type Note = {
+	id: number,
+	title: string,
+	note: string,
+};
+
+type Props = {
+  getAllNotes: () => void,
+  getNoteById: (id: number) => void,
+  notes: Note[]
+}
+
+class NoteContainer extends React.Component<Props> {
 	componentDidMount() {
 		const { getAllNotes } = this.props;
 		getAllNotes();
@@ -35,7 +47,6 @@ class NoteContainer extends React.Component<null> {
 const mapStateToProps = ({ notes }) => {
 	return {
 		notes: notes.notes,
-		selected: notes.selectedNote,
 	};
 };
 
