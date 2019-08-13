@@ -10,7 +10,13 @@ import './styles/index.scss';
 
 const store = createStore(reducers, applyMiddleware(thunk));
 
-axios.baseUrl = 'some url';
+axios.defaults.baseURL = 'http://192.168.99.100:8080';
+axios.defaults.auth = {
+	username: process.env.USERNAME,
+	password: process.env.PASSWORD,
+};
+
+console.log(process.env.USERNAME)
 
 ReactDOM.render(
 	<Provider store={store}>
