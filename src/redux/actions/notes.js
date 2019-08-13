@@ -1,4 +1,7 @@
+// @flow
+
 import axios from 'axios';
+import { Dispatch } from 'redux';
 import {
 	fetchAllNotes,
 	fetchNote,
@@ -9,7 +12,7 @@ import {
 } from './types';
 
 export const fetchNotes = () => {
-	return async dispatch => {
+	return async (dispatch: Dispatch) => {
 		try {
 			const response = await axios.get('/notes');
 
@@ -26,8 +29,8 @@ export const fetchNotes = () => {
 	};
 };
 
-export const fetchNoteById = id => {
-	return async dispatch => {
+export const fetchNoteById = (id: number) => {
+	return async (dispatch: Dispatch) => {
 		try {
 			const response = await axios.get(`/notes/${id}`);
 
@@ -48,8 +51,8 @@ export const createNote = () => ({
 	type: createNewNote,
 });
 
-export const saveNote = (title, note) => {
-	return async dispatch => {
+export const saveNote = (title: string, note: string) => {
+	return async (dispatch: Dispatch) => {
 		try {
 			const response = await axios.post('/notes', {
 				title,
@@ -69,8 +72,8 @@ export const saveNote = (title, note) => {
 	};
 };
 
-export const updateNoteById = (title, note, id) => {
-	return async dispatch => {
+export const updateNoteById = (title: string, note: string, id: number) => {
+	return async (dispatch: Dispatch) => {
 		try {
 			const response = await axios.post(`/notes/${id}`, {
 				title,
