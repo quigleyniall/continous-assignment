@@ -1,6 +1,5 @@
 * {
-	font-weight: 400;
-	font-family: 'Source Sans Pro', sans-serif;
+	font-family: inherit;
 }
 
 html,
@@ -8,6 +7,7 @@ body,
 #root {
 	margin: 0;
 	padding: 0;
+	font-family: 'Source Sans Pro', sans-serif;
 }
 
 .w {
@@ -56,4 +56,14 @@ body,
 	&-absolute {
 		position: absolute;
 	}
+}
+
+.padding {
+	&-sm {
+		padding: 15px;
+	}
+}
+
+.border-box {
+	box-sizing: border-box;
 }
