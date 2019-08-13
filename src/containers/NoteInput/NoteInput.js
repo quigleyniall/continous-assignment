@@ -1,27 +1,30 @@
 // @flow
 
+
 import * as React from 'react';
-import { Editor, RichUtils } from 'draft-js';
+import { Editor, EditorState, RichUtils } from 'draft-js';
 import { customStlying } from '../../utils/toolbarStyles';
 
-class NoteInput extends React.Component {
-	constructor(props) {
-		super(props);
-		this.setEditor = editor => {
-			this.editor = editor;
-		};
-		this.focusEditor = () => {
-			if (this.editor) {
-				this.editor.focus();
-			}
-		};
-	}
+type NoteInputProps = {
+  editorState: EditorState,
+  className: string,
+  onChange: (state: EditorState) => void
+}
 
-	handleKeyCommand = command => {
-		const { editorState } = this.props;
+class NoteInput extends React.Component<NoteInputProps> {
+  editor;
+
+  focusEditor = () => {
+    if (this.editor) {
+      this.editor.focus();
+    }
+  };
+
+	handleKeyCommand = (command) => {
+		const { editorState, onChange } = this.props;
 		const newState = RichUtils.handleKeyCommand(editorState, command);
 		if (newState) {
-			this.onChange(newState);
+			onChange(newState);
 			return 'handled';
 		}
 		return 'not-handled';
@@ -35,7 +38,8 @@ class NoteInput extends React.Component {
 				onClick={this.focusEditor}
 				role="presentation">
 				<Editor
-					ref={this.setEditor}
+					// eslint-disable-next-line no-return-assign
+					ref={editor => this.editor = editor}
 					editorState={editorState}
 					onChange={onChange}
 					handleKeyCommand={this.handleKeyCommand}
