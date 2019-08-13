@@ -35,7 +35,7 @@ const Button = ({
 				<i className={icon} />
 			</span>
 		) : null}
-		{clicked ? <span className="btn-clicked">text</span> : text}
+		{clicked ? <span className="btn-clicked">{text}</span> : text}
 	</button>
 );
 
@@ -43,6 +43,7 @@ Button.defaultProps = {
 	disabled: false,
 	className: 'btn',
 	clicked: false,
+	type: 'button',
 };
 
 export default Button;
