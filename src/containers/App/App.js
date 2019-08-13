@@ -27,7 +27,19 @@ class App extends React.Component<null> {
 	}
 }
 
+const mapStateToProps = ({ notes }) => {
+	return {
+		notes: notes.notes,
+    selected: notes.selectedNote,
+	};
+};
+
+
+const mapDispatchToProps = {
+  createNewNote: createNote
+};
+
 export default connect(
-	null,
-	{ createNewNote: createNote },
+	mapStateToProps,
+	mapDispatchToProps
 )(App);
