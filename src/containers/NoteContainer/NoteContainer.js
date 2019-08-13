@@ -8,15 +8,21 @@ import './NoteContainer.scss';
 
 class NoteContainer extends React.Component<null> {
 	componentDidMount() {
-		// this.props.fetchNotes();
+		const { getAllNotes } = this.props;
+		getAllNotes();
+	}
+
+	componentWillUpdate() {
+		const { getAllNotes } = this.props;
+		getAllNotes();
 	}
 
 	renderNotes = () => {
-		const { notes, fetchNoteById } = this.props;
+		const { notes, getNoteById } = this.props;
 		return notes.map(note => (
 			<NoteSelect
 				title={note.title}
-				selectNote={() => fetchNoteById(note.id)}
+				selectNote={() => getNoteById(note.id)}
 			/>
 		));
 	};
@@ -33,7 +39,12 @@ const mapStateToProps = ({ notes }) => {
 	};
 };
 
+const mapDispatchToProps = {
+	getAllNotes: fetchNotes,
+	getNoteById: fetchNoteById,
+};
+
 export default connect(
 	mapStateToProps,
-	{ fetchNotes, fetchNoteById },
+	mapDispatchToProps,
 )(NoteContainer);
