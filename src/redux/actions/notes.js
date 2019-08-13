@@ -3,6 +3,7 @@ import {
 	fetchAllNotes,
 	fetchNote,
 	createNewNote,
+	saveNewNote,
 	updateNote,
 	errorHandler,
 } from './types';
@@ -14,7 +15,7 @@ export const fetchNotes = () => {
 
 			dispatch({
 				type: fetchAllNotes,
-				payload: response.data,
+				payload: response.data.data,
 			});
 		} catch (err) {
 			dispatch({
@@ -26,13 +27,28 @@ export const fetchNotes = () => {
 };
 
 export const fetchNoteById = id => {
-	return {
-		type: fetchNote,
-		payload: id,
+	return async dispatch => {
+		try {
+			const response = await axios.get(`/notes/${id}`);
+
+			dispatch({
+				type: fetchNote,
+				payload: response.data.data,
+			});
+		} catch (err) {
+			dispatch({
+				type: errorHandler,
+				payload: `Problem retrieving note with id ${id}`,
+			});
+		}
 	};
 };
 
-export const createNote = (title, note) => {
+export const createNote = () => ({
+	type: createNewNote,
+});
+
+export const saveNote = (title, note) => {
 	return async dispatch => {
 		try {
 			const response = await axios.post('/notes', {
@@ -41,7 +57,7 @@ export const createNote = (title, note) => {
 			});
 
 			dispatch({
-				type: createNewNote,
+				type: saveNewNote,
 				payload: response.data,
 			});
 		} catch (err) {
@@ -60,10 +76,11 @@ export const updateNoteById = (title, note, id) => {
 				title,
 				note,
 			});
+			const { data } = await response;
 
 			dispatch({
 				type: updateNote,
-				payload: response.data,
+				payload: data,
 			});
 		} catch (err) {
 			dispatch({
