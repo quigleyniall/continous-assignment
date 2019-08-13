@@ -16,12 +16,25 @@ import NoteInput from '../NoteInput/NoteInput';
 import { saveNote, updateNoteById } from '../../redux/actions';
 import './NoteInputContainer.scss';
 
-type State = {
-	editorState: any,
-	noteId: number,
+type Note = {
+	id: number,
+	title: string,
+	note: string,
 };
 
-class NoteMainInput extends React.Component<null, State> {
+type State = {
+  editorTitleState: EditorState,
+  editorBodyState: EditorState,
+  textChanged: boolean | (editorState: EditorState) => boolean
+};
+
+type Props = {
+  saveNewNote: (title: string, note: string) => void,
+  updateNote: (title: string, note: string, id: number) => void,
+  selectedNote: Note | null
+}
+
+class NoteMainInput extends React.Component<Props, State> {
 	constructor(props) {
 		super(props);
 		// eslint-disable-next-line react/state-in-constructor
@@ -66,24 +79,24 @@ class NoteMainInput extends React.Component<null, State> {
 			: updateNote(title, bodyHtml, selectedNote.id);
 	};
 
-	onStyleClick = style => {
+	onStyleClick = (style: string) => {
 		const { editorBodyState } = this.state;
 		this.onChangeBody(RichUtils.toggleInlineStyle(editorBodyState, style));
 	};
 
-	onBlockClick = block => {
+	onBlockClick = (block: string) => {
 		const { editorBodyState } = this.state;
 		this.onChangeBody(RichUtils.toggleBlockType(editorBodyState, block));
 	};
 
-	onChangeTitle = editorTitleState => {
+	onChangeTitle = (editorTitleState: EditorState) => {
 		this.setState({
 			editorTitleState,
 			textChanged: this.checkNoteHasTitle(editorTitleState),
 		});
 	};
 
-	onChangeBody = async editorBodyState => {
+	onChangeBody = (editorBodyState: EditorState) => {
 		const { editorTitleState } = this.state;
 		this.setState({
 			editorBodyState,
@@ -91,7 +104,7 @@ class NoteMainInput extends React.Component<null, State> {
 		});
 	};
 
-	checkNoteHasTitle = editorTitleState => {
+	checkNoteHasTitle = (editorTitleState: EditorState): boolean => {
 		const titleBlock = convertToRaw(editorTitleState.getCurrentContent())
 			.blocks;
 		const title = titleBlock
@@ -101,13 +114,13 @@ class NoteMainInput extends React.Component<null, State> {
 		return title.length > 0;
 	};
 
-	checkInlineStyles = style => {
+	checkInlineStyles = (style: string): boolean => {
 		const { editorBodyState } = this.state;
 		const inlineStyle = editorBodyState.getCurrentInlineStyle();
 		return inlineStyle.has(style);
 	};
 
-	checkBlockStyles = style => {
+	checkBlockStyles = (style: string): boolean => {
 		const { editorBodyState } = this.state;
 		const startKey = editorBodyState.getSelection().getStartKey();
 		const currentBlockType = editorBodyState
