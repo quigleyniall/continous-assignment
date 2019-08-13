@@ -8,7 +8,11 @@ import NoteInputContainer from '../NoteInputContainer/NoteInputContainer';
 import Header from '../../components/Header/Header';
 import './App.scss';
 
-class App extends React.Component<null> {
+type Props = {
+  createNewNote: () => void
+}
+
+class App extends React.Component<Props> {
 	createNote = () => {
 		const { createNewNote } = this.props;
 		createNewNote();
@@ -27,19 +31,7 @@ class App extends React.Component<null> {
 	}
 }
 
-const mapStateToProps = ({ notes }) => {
-	return {
-		notes: notes.notes,
-    selected: notes.selectedNote,
-	};
-};
-
-
-const mapDispatchToProps = {
-  createNewNote: createNote
-};
-
 export default connect(
-	mapStateToProps,
-	mapDispatchToProps
+  null,
+  { createNewNote: createNote }
 )(App);
