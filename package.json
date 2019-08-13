@@ -6,7 +6,7 @@
 	"scripts": {
 		"start": "webpack-dev-server --open --mode development",
 		"build": "webpack --mode production",
-		"prod": "node dist/server.js",
+		"prod": "node server.js",
 		"flow": "flow",
 		"babel-flow": "babel src/ -d lib/",
 		"prepublish": "yarn run babel-flow"
