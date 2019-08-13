@@ -1,4 +1,5 @@
 // @flow
+
 import React from 'react';
 import './Button.scss';
 
@@ -40,6 +41,7 @@ const Button = ({
 );
 
 Button.defaultProps = {
+  onPress: () => {},
 	disabled: false,
 	className: 'btn',
 	clicked: false,
