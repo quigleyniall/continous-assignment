@@ -24,6 +24,7 @@
 		"babel-plugin-react-flow-props-to-prop-types": "^0.15.0",
 		"babel-polyfill": "^6.26.0",
 		"css-loader": "^3.2.0",
+		"dotenv": "^8.0.0",
 		"eslint": "^6.1.0",
 		"eslint-config-airbnb": "^18.0.0",
 		"eslint-config-prettier": "^6.0.0",
