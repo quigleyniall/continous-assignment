@@ -5,5 +5,8 @@
 	"editor.detectIndentation": true,
 	"eslint.enable": true,
 	"javascript.format.enable": false,
-	"editor.formatOnSave": true
+	"editor.formatOnSave": true,
+	"javascript.validate.enable": false,
+	"flow.useNPMPackagedFlow": true,
+	"prettier.eslintIntegration": true
 }
