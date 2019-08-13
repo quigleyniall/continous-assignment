@@ -1,3 +1,5 @@
+// @flow
+
 import {
 	fetchAllNotes,
 	fetchNote,
@@ -6,14 +8,20 @@ import {
 	errorHandler,
 } from '../actions';
 
+
 type Note = {
 	id: number,
 	title: string,
-	note?: string,
+	note: string,
 };
 
+type Action = {
+  type: String,
+  payload: any
+}
+
 type State = {
-	notes: Array<Note> | [],
+	notes: Note[],
 	selectedNote: Note | null,
 	error: boolean | string,
 };
@@ -24,7 +32,7 @@ const initialState = {
 	error: false,
 };
 
-export const notesReducer = (state: State = initialState, action) => {
+export const notesReducer = (state: State = initialState, action: Action) => {
 	switch (action.type) {
 		case fetchAllNotes:
 			return {
